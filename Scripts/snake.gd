@@ -15,6 +15,7 @@ enum Direction {
 
 @onready var area: Area2D = $Body
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var health_bar: ProgressBar = $HealthBar
 
 var current_direction: Direction
 var movement_vector: Vector2
@@ -25,6 +26,7 @@ func _ready():
 	movement_vector = Vector2i.UP
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size/2
+	health_bar.init_health(10, 10)
 
 func _input(event):
 	if event.is_action_pressed("ui_up") and current_direction != Direction.DOWN:
@@ -65,4 +67,8 @@ func _physics_process(delta):
 
 func _on_body_area_entered(area):
 	if area.is_in_group("food"):
-		print("diprisyo")
+		area.queue_free()
+		health -= 1
+		health_bar.set_health(health)
+		if health <= 0:
+			queue_free()
