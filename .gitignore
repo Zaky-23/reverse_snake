@@ -1,3 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+Export/
+icon.svg
+icon.svg.import
+/*/*.import
+export_presets.cfg

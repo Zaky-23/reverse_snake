@@ -11,6 +11,7 @@ enum Direction {
 @export var tile_size: int = 1
 @export var move_cooldown: float = 0.3
 @export var segment: PackedScene
+@export var health: int = 10
 
 @onready var area: Area2D = $Body
 @onready var sprite: Sprite2D = $Sprite2D
@@ -56,6 +57,12 @@ func _process(delta):
 func _physics_process(delta):
 	if time_since_move > move_cooldown:
 		position += movement_vector * tile_size * move_speed
+		position = position.snappedf(tile_size)
 		time_since_move = 0
 	else:
 		time_since_move += delta
+
+
+func _on_body_area_entered(area):
+	if area.is_in_group("food"):
+		print("diprisyo")
