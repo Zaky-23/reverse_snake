@@ -13,7 +13,6 @@ enum Direction {
 @export var segment: PackedScene
 @export var health: int = 10
 
-@onready var area: Area2D = $Body
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_bar: ProgressBar = $HealthBar
 
