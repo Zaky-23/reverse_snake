@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bba7ivilw86u7"]
+
+[ext_resource type="Texture2D" uid="uid://cjahg1ml8swnx" path="res://Assets/body.png" id="1_xjepd"]
+
+[node name="Segment" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+build_mode = 1
+polygon = PackedVector2Array(-9, -15, 11, -15, 13, -9, 13, 3, 11, 6, 7, 15, -12, 15, -5, 3, -5, -7)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_xjepd")
+flip_v = true
+
+[node name="ConnectPoint" type="Marker2D" parent="."]
+position = Vector2(0, 15)
