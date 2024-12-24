@@ -19,12 +19,15 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=2
+window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 
 [global_group]
 
 food=""
+fast_food=""
+weird_food=""
+player=""
 
 [physics]
 

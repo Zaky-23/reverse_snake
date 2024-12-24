@@ -3,7 +3,7 @@ extends Node2D
 @export var max_food_at_moment: int = 5
 @export var food_spawn_timer: float = 2.0
 @export var tile_size: int = 8
-@export var food: PackedScene
+@export var food: Array[PackedScene]
 
 @onready var top_left: Marker2D = $TopLeft
 @onready var top_right: Marker2D = $TopRight
@@ -36,8 +36,8 @@ func _on_timer_timeout():
 		spawn_food()
 
 func spawn_food():
-	var x = randf_range(width / tile_size, width)
-	var y = randf_range(height / tile_size, height)
-	var new_food = food.instantiate()
+	var x = randf_range(top_left.position.x, top_right.position.x)
+	var y = randf_range(top_left.position.y, bottom_left.position.y)
+	var new_food = food.pick_random().instantiate()
 	children.add_child(new_food)
 	new_food.position = Vector2(x, y).snappedf(tile_size)
