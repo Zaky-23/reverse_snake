@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=4 uid="uid://co4og04pj2esv"]
 
-[ext_resource type="TileSet" uid="uid://r2uuqy81i45p" path="res://Ressources/grass.tres" id="1_jjc3u"]
+[ext_resource type="TileSet" uid="uid://dfiib14ttp8gr" path="res://Ressources/grass.tres" id="1_jjc3u"]
 [ext_resource type="PackedScene" uid="uid://dqc1uak2ed06f" path="res://Entities/snake.tscn" id="2_uh0jo"]
-[ext_resource type="PackedScene" uid="uid://bba7ivilw86u7" path="res://Entities/segment.tscn" id="3_oayg1"]
+[ext_resource type="PackedScene" path="res://Entities/segment.tscn" id="3_oayg1"]
 [ext_resource type="Script" path="res://Scripts/spawner.gd" id="4_4m4g8"]
 [ext_resource type="PackedScene" uid="uid://wdm1ufat1rfa" path="res://Entities/fast_food.tscn" id="4_bx1ft"]
 [ext_resource type="PackedScene" uid="uid://dqsmm7sst3x6" path="res://Entities/weird_food.tscn" id="5_lrcsa"]
