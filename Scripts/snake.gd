@@ -16,6 +16,8 @@ enum Direction {
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_bar: ProgressBar = $HealthBar
 
+@onready var screen_rect = get_viewport_rect().size
+
 var current_direction: Direction
 var movement_vector: Vector2
 var time_since_move = 0
@@ -42,9 +44,19 @@ func _input(event):
 		current_direction = Direction.RIGHT
 	if event.is_action_pressed("ui_accept"):
 		pass
-		
+
+func screen_wrap():
+	if position.x > screen_rect.x:
+		position.x = 0
+	if position.x < 0:
+		position.x = screen_rect.x
+	if position.y > screen_rect.y:
+		position.y = 0
+	if position.y < 0:
+		position.y = screen_rect.y
 
 func _process(delta):
+	screen_wrap()
 	match current_direction:
 		Direction.UP:
 			sprite.frame = 0
@@ -71,3 +83,10 @@ func _on_body_area_entered(area):
 		health_bar.set_health(health)
 		if health <= 0:
 			queue_free()
+			return
+	
+	if area.is_in_group("fast_food"):
+		move_speed *= 1.25
+	
+	if area.is_in_group("weird_food"):
+		pass
