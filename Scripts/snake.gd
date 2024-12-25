@@ -7,14 +7,19 @@ enum Direction {
 	RIGHT = 3,
 }
 
-@export var move_speed: int = 50
+@export var move_speed: float = 50.0
 @export var tile_size: int = 1
 @export var move_cooldown: float = 0.3
 @export var segment: PackedScene
 @export var health: int = 10
+@export var spawner: Node
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var hurt_audio_player: AudioStreamPlayer = $HurtAudioPlayer
+@onready var die_audio_player: AudioStreamPlayer = $DieAudioPlayer
+@onready var death_timer: Timer = $DeathTimer
+@onready var explode_animation: AnimatedSprite2D =$ExplodeSprite
 
 @onready var screen_rect = get_viewport_rect().size
 
@@ -56,6 +61,8 @@ func screen_wrap():
 		position.y = screen_rect.y
 
 func _process(delta):
+	if explode_animation.frame == 7:
+		explode_animation.hide()
 	screen_wrap()
 	match current_direction:
 		Direction.UP:
@@ -75,18 +82,30 @@ func _physics_process(delta):
 	else:
 		time_since_move += delta
 
-
 func _on_body_area_entered(area):
 	if area.is_in_group("food"):
+		hurt_audio_player.play()
 		area.queue_free()
 		health -= 1
 		health_bar.set_health(health)
 		if health <= 0:
-			queue_free()
+			die_audio_player.play()
+			move_speed = 0
+			death_timer.start()
+			health_bar.hide()
+			sprite.hide()
+			explode_animation.show()
+			explode_animation.play()
 			return
-	
-	if area.is_in_group("fast_food"):
-		move_speed *= 1.25
-	
-	if area.is_in_group("weird_food"):
-		pass
+				
+		if area.is_in_group("fast_food"):
+			move_speed *= 1.1
+		
+		if area.is_in_group("weird_food"):
+			spawner.overdrive_timer.start()
+			spawner.overdrive = true
+		
+
+
+func _on_death_timer_timeout():
+	queue_free()

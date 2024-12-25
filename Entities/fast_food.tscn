@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://wdm1ufat1rfa"]
 
 [ext_resource type="Script" path="res://Scripts/food.gd" id="1_3byi6"]
-[ext_resource type="Texture2D" uid="uid://dtii3kco1mph3" path="res://Assets/banana.png" id="2_lpqi4"]
-[ext_resource type="Texture2D" uid="uid://d176qda3g1x8m" path="res://Assets/attention.png" id="3_dxgs2"]
+[ext_resource type="Texture2D" uid="uid://b8aqttgwc0xpy" path="res://Assets/banana.png" id="2_lpqi4"]
+[ext_resource type="Texture2D" uid="uid://dy0dekqp5t4jq" path="res://Assets/attention.png" id="3_dxgs2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ladrt"]
 size = Vector2(28, 22)
 
 [node name="FastFood" type="Area2D" groups=["fast_food", "food"]]
 script = ExtResource("1_3byi6")
-lifespan = 5.0
+lifespan = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["fast_food", "food"]]
 position = Vector2(0.5, -1)
@@ -28,6 +28,7 @@ texture = ExtResource("3_dxgs2")
 one_shot = true
 
 [node name="Buffer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="LifeSpan" to="." method="_on_lifespan_timeout"]
 [connection signal="timeout" from="Buffer" to="." method="_on_buffer_timeout"]

@@ -1,11 +1,78 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqc1uak2ed06f"]
+[gd_scene load_steps=17 format=3 uid="uid://dqc1uak2ed06f"]
 
 [ext_resource type="Script" path="res://Scripts/snake.gd" id="1_3wtk8"]
 [ext_resource type="Texture2D" uid="uid://1r5xvfgjug6b" path="res://Ressources/snake_head_atlas.tres" id="1_w2kqi"]
+[ext_resource type="Texture2D" uid="uid://cw38q4a3uot6q" path="res://Ressources/explode_atlas.tres" id="3_fbkuh"]
 [ext_resource type="PackedScene" uid="uid://dudqehh6r266x" path="res://Entities/health_bar.tscn" id="3_jl058"]
+[ext_resource type="AudioStream" uid="uid://bok6hdbn1jws4" path="res://Assets/classic_hurt.mp3" id="4_v2c38"]
+[ext_resource type="AudioStream" uid="uid://45hlmsod8n6t" path="res://Assets/vine-boom.mp3" id="5_tx2ud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vj6g"]
 size = Vector2(6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2g3p"]
+atlas = ExtResource("3_fbkuh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxbtc"]
+atlas = ExtResource("3_fbkuh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sigr4"]
+atlas = ExtResource("3_fbkuh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtly0"]
+atlas = ExtResource("3_fbkuh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngrbe"]
+atlas = ExtResource("3_fbkuh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4b7g"]
+atlas = ExtResource("3_fbkuh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ww53"]
+atlas = ExtResource("3_fbkuh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2hu7"]
+atlas = ExtResource("3_fbkuh")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ndm7m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2g3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxbtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sigr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtly0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngrbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4b7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ww53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2hu7")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 16.0
+}]
 
 [node name="Snake" type="Node2D" groups=["player"]]
 script = ExtResource("1_3wtk8")
@@ -21,6 +88,13 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_w2kqi")
 hframes = 4
 
+[node name="ExplodeSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ndm7m")
+animation = &"explode"
+frame = 2
+frame_progress = 0.664054
+
 [node name="HealthBar" parent="." instance=ExtResource("3_jl058")]
 offset_left = -7.0
 offset_top = -4.0
@@ -28,4 +102,13 @@ offset_right = 233.0
 offset_bottom = 0.0
 scale = Vector2(0.0600956, -0.508766)
 
+[node name="HurtAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_v2c38")
+
+[node name="DieAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tx2ud")
+
+[node name="DeathTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Body" to="." method="_on_body_area_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

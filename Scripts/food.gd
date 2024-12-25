@@ -6,6 +6,7 @@ extends Area2D
 @onready var buffer_timer: Timer = $Buffer
 
 func _ready():
+	lifespan_timer.wait_time = lifespan
 	$Sprite2D.hide()
 	$WarningSprite.show()
 	monitorable = false
