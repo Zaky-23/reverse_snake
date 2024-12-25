@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://cun1q7xo5jwd6"]
+
+[ext_resource type="Script" path="res://UI/game_over.gd" id="1_3l5j0"]
+[ext_resource type="Texture2D" uid="uid://drj6e8gsdvlyu" path="res://UI/gameover.webp" id="1_woost"]
+
+[node name="Game Over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3l5j0")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color(0.356973, 0.351856, 0.374129, 1)
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_woost")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 256.0
+offset_top = 207.0
+offset_right = 381.0
+offset_bottom = 258.0
+text = "Retry"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 141.0
+offset_right = 378.0
+offset_bottom = 175.0
+bbcode_enabled = true
+text = "[font=UI/font.ttf]Game Over!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
