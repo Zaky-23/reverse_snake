@@ -2,12 +2,12 @@
 
 [ext_resource type="TileSet" uid="uid://dfiib14ttp8gr" path="res://Ressources/grass.tres" id="1_jjc3u"]
 [ext_resource type="PackedScene" uid="uid://dqc1uak2ed06f" path="res://Entities/snake.tscn" id="2_uh0jo"]
-[ext_resource type="PackedScene" uid="uid://bba7ivilw86u7" path="res://Entities/segment.tscn" id="3_oayg1"]
+[ext_resource type="PackedScene" path="res://Entities/segment.tscn" id="3_oayg1"]
 [ext_resource type="Script" path="res://Scripts/spawner.gd" id="4_4m4g8"]
 [ext_resource type="PackedScene" uid="uid://wdm1ufat1rfa" path="res://Entities/fast_food.tscn" id="4_bx1ft"]
 [ext_resource type="PackedScene" uid="uid://dqsmm7sst3x6" path="res://Entities/weird_food.tscn" id="5_lrcsa"]
 [ext_resource type="PackedScene" uid="uid://dtf6xju0gi3d2" path="res://Entities/food.tscn" id="5_p0358"]
-[ext_resource type="AudioStream" uid="uid://lqas7jc0klyg" path="res://Assets/retro_polka.ogg" id="8_pdg67"]
+[ext_resource type="AudioStream" uid="uid://cwd6duxvnqmdj" path="res://Assets/retro_polka.ogg" id="8_pdg67"]
 
 [node name="Map" type="Node2D"]
 

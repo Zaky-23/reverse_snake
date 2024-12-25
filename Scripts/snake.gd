@@ -96,6 +96,7 @@ func _on_body_area_entered(area):
 			sprite.hide()
 			explode_animation.show()
 			explode_animation.play()
+			get_tree().change_scene_to_file("res://UI/game_over.tscn")
 			return
 				
 		if area.is_in_group("fast_food"):
