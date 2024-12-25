@@ -9,7 +9,7 @@ size = Vector2(28, 22)
 
 [node name="WeirdFood" type="Area2D" groups=["food", "weird_food"]]
 script = ExtResource("1_tnlkk")
-lifespan = 1.5
+lifespan = 1.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["fast_food", "food"]]
 position = Vector2(0, -1)

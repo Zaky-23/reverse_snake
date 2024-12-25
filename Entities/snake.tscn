@@ -76,6 +76,7 @@ animations = [{
 
 [node name="Snake" type="Node2D" groups=["player"]]
 script = ExtResource("1_3wtk8")
+health = 12
 
 [node name="Body" type="Area2D" parent="." groups=["player"]]
 
@@ -101,6 +102,12 @@ offset_top = -4.0
 offset_right = 233.0
 offset_bottom = 0.0
 scale = Vector2(0.0600956, -0.508766)
+max_value = 12.0
+value = 12.0
+
+[node name="DamageBar" parent="HealthBar" index="0"]
+max_value = 12.0
+value = 12.0
 
 [node name="HurtAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_v2c38")
@@ -112,3 +119,5 @@ stream = ExtResource("5_tx2ud")
 
 [connection signal="area_entered" from="Body" to="." method="_on_body_area_entered"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+
+[editable path="HealthBar"]

@@ -32,7 +32,7 @@ func _ready():
 	movement_vector = Vector2i.UP
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size/2
-	health_bar.init_health(10, 10)
+	health_bar.init_health(health, health)
 
 func _input(event):
 	if event.is_action_pressed("ui_up") and current_direction != Direction.DOWN:
